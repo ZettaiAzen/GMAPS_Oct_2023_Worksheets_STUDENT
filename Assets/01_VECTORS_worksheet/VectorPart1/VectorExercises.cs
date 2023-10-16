@@ -41,15 +41,19 @@ public class VectorExercises : MonoBehaviour
 
     void Question2a()
     {
-        startPt = new Vector2(0, 0);
-        endPt = new Vector2(2, 30);
+        startPt = new Vector2(0, 0); //the position of the tail of the vector
+        endPt = new Vector2(2, 3); //the head position of the head of the vector
 
+        // calling the GetLine function from the lineFactory class to draw the vector
         drawnLine = lineFactory.GetLine(startPt, endPt, 0.02f, Color.black);
 
+        // drawnLine is using Line class. Calling the EnableDrawing function in the class to render the line
         drawnLine.EnableDrawing(true);
 
+        //calculating the vector
         Vector2 vec2 = endPt - startPt;
-        Debug.Log("MAgnitude = " + vec2.magnitude);
+        // printing out the magnitude of the vector
+        Debug.Log("Magnitude = " + vec2.magnitude);
     }
 
     void Question2b(int n)
