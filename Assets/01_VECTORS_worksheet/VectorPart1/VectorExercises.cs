@@ -16,6 +16,8 @@ public class VectorExercises : MonoBehaviour
 
     private void Start()
     {
+        CalculateGameDimensions();
+
         if (Q2a)
             Question2a();
         if (Q2b)
@@ -69,8 +71,8 @@ public class VectorExercises : MonoBehaviour
     void Question2b(int n)
     {
         // initialising the max range for X and Y coordinates
-        int maxX = 5;
-        int maxY = 5;
+        //int maxX = 5;
+        //int maxY = 5;
 
         // loop for the amount of times given in the argument in the function Question2b
         for (int i =0; i< n; i++)
@@ -96,25 +98,36 @@ public class VectorExercises : MonoBehaviour
 
     void Question2d()
     {
-
+        //drawing a red arrow from the tail being at 0,0,0 and head being 5,5,0 that stays for 60 seconds/ 1 min
+        DebugExtension.DebugArrow(
+            new Vector3(0, 0, 0),
+            new Vector3(5, 5, 0),
+            Color.red,
+            60f);
     }
 
     void Question2e(int n)
     {
         for (int i = 0; i < n; i++)
         {
-            startPt = new Vector2(
+            //making a new variable to store vector3 
+            Vector3 endPtV3;
+
+            // randomising the end point location /head of the vector
+            endPtV3 = new Vector3(
                 Random.Range(-maxX, maxX), 
+                Random.Range(-maxY, maxY),
+                // Z value is taken from max and min Y
                 Random.Range(-maxY, maxY));
+                
+            Debug.Log(endPtV3);
 
-            // Your code here
-            // ...
-
-            //DebugExtension.DebugArrow(
-            //    new Vector3(0, 0, 0),
-            //    // Your code here,
-            //    Color.white,
-            //    60f);
+            //drawing a white arrow from the origin to whatever the end point is that stays for 60 seconds/1 min
+            DebugExtension.DebugArrow(
+                new Vector3(0, 0, 0),
+                endPtV3,
+                Color.white,
+                60f);
         }  
     }
 
