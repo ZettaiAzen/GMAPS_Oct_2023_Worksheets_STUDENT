@@ -36,7 +36,17 @@ public class VectorExercises : MonoBehaviour
 
     public void CalculateGameDimensions()
     {
+        //getting the total height because it is split into two (top and botton) from middle of camera
+        // so need to multiply by 2
+        GameHeight = Camera.main.orthographicSize * 2f;
+        // the aspect shows the ratio of the width and the height of the screen so we need to multiply by the game height to get game width
+        GameWidth = Camera.main.aspect * GameHeight;
 
+        // initalising the range of the coordinates
+        maxX = GameWidth / 2;
+        maxY = GameHeight / 2;
+        minX = -maxX;
+        minY = -maxY;
     }
 
     void Question2a()
@@ -52,13 +62,36 @@ public class VectorExercises : MonoBehaviour
 
         //calculating the vector
         Vector2 vec2 = endPt - startPt;
-        // printing out the magnitude of the vector
+        // printing out the magnitude of the vector in the console
         Debug.Log("Magnitude = " + vec2.magnitude);
     }
 
     void Question2b(int n)
     {
+        // initialising the max range for X and Y coordinates
+        int maxX = 5;
+        int maxY = 5;
 
+        // loop for the amount of times given in the argument in the function Question2b
+        for (int i =0; i< n; i++)
+        {
+            //initialising the start point of the vector
+            startPt = new Vector2(
+                Random.Range(-maxX, maxX),
+                Random.Range(-maxY, maxY));
+
+            //initialising the end point of the vector
+            endPt = new Vector2(
+                Random.Range(-maxX, maxX),
+                Random.Range(-maxY, maxY));
+
+            //drawing the line using the GetLine function from the lineFactory class
+            drawnLine = lineFactory.GetLine(
+                startPt, endPt, 0.02f, Color.black);
+
+            //allows the line to be rendered
+            drawnLine.EnableDrawing(true);
+        }
     }
 
     void Question2d()
