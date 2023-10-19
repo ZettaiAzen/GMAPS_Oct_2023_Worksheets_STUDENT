@@ -50,10 +50,15 @@ public class HVector2D
         return new HVector2D(a.x / scalar, a.y / scalar);
     }
 
-    // public float Magnitude()
-    // {
+    public float Magnitude()
+    {
+        double xSquared = Math.Pow(Convert.ToDouble(this.x), 2);
+        double ySquared = Math.Pow(Convert.ToDouble(this.y), 2);
+        double addedSquares = xSquared + ySquared;
+        double mag = Math.Sqrt(addedSquares);
+        return (float)mag;
 
-    // }
+    }
 
     // public void Normalize()
     // {
