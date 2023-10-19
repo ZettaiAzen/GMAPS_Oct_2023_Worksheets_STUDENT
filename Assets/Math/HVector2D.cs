@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Unity.VisualScripting;
 
 //[Serializable]
 public class HVector2D
@@ -60,20 +61,31 @@ public class HVector2D
 
     }
 
-    // public void Normalize()
-    // {
+    public HVector2D Normalize()
+    {
+        float mag = Magnitude();
+        x = this.x / mag;
+        y = this.y / mag;
+        return new HVector2D(x, y);
+    }
 
-    // }
+    public float DotProduct(HVector2D v1, HVector2D v2)
+    {
+        x = v1.x * v2.x;
+        y = v1.y * v2.y;
+        return x + y;
+    }
 
-    // public float DotProduct(/*???*/)
-    // {
+    public HVector2D Projection(HVector2D v1, HVector2D v2)
+    {
+        float dotPro = DotProduct(v1, v2);
+        double magSquared = Math.Pow(v2.Magnitude(), 2);
+        double leftSide = dotPro / magSquared;
+        double x = leftSide * v2.x;
+        double y = leftSide * v2.y;
 
-    // }
-
-    // public HVector2D Projection(/*???*/)
-    // {
-
-    // }
+        return new HVector2D((float)x, (float)y);
+    }
 
     // public float FindAngle(/*???*/)
     // {
