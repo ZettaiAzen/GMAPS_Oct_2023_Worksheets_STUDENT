@@ -137,17 +137,22 @@ public class VectorExercises : MonoBehaviour
         HVector2D b = new HVector2D(-4, 2);
         HVector2D c = a + b;
 
+        //printing vectors a, b and c with tail at origin
         DebugExtension.DebugArrow(new Vector3(0, 0, 0), a.ToUnityVector3(), Color.red, 60f);
         DebugExtension.DebugArrow(new Vector3(0, 0, 0), b.ToUnityVector3(), Color.green, 60f);
         DebugExtension.DebugArrow(new Vector3(0, 0, 0), c.ToUnityVector3(), Color.white, 60f);
+        //printing c with origin at head of b
         DebugExtension.DebugArrow(b.ToUnityVector3(), c.ToUnityVector3(), Color.white, 60f);
 
         Debug.Log("Magnitude of a = " + a.Magnitude().ToString("F2"));
         Debug.Log("Magnitude of b = " + b.Magnitude().ToString("F2"));
         Debug.Log("Magnitude of c = " + c.Magnitude().ToString("F2"));
 
+        // printing a minus b (a-b)
+        DebugExtension.DebugArrow(new Vector3(0, 0, 0), (a - b).ToUnityVector3(), Color.white, 60f);
+        //printing -b
         DebugExtension.DebugArrow(a.ToUnityVector3(), (b*-1).ToUnityVector3(), Color.green, 60f);
-        DebugExtension.DebugArrow(new Vector3(0, 0, 0), (a-b).ToUnityVector3(), Color.white, 60f);
+        
     }
 
     public void Question3b()
