@@ -30,10 +30,10 @@ public class HVector2D
         h = 1.0f;
     }
 
-    // public static HVector2D operator +( /*???*/)
-    // {
-
-    // }
+    public static HVector2D operator +(HVector2D a, HVector2D b)
+    {
+        
+    }
 
     // public static HVector2D operator -(/*???*/)
     // {
