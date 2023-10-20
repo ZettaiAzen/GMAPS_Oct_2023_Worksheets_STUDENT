@@ -76,7 +76,7 @@ public class HVector2D
         return x + y;
     }
 
-    public HVector2D Projection(HVector2D v1, HVector2D v2)
+    public HVector2D ProjectionMethod(HVector2D v1, HVector2D v2)
     {
         float dotPro = DotProduct(v1, v2);
         double magSquared = Math.Pow(v2.Magnitude(), 2);
