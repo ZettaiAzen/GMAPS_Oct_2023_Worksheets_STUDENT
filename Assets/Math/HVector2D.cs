@@ -64,19 +64,19 @@ public class HVector2D
     public HVector2D Normalize()
     {
         float mag = Magnitude();
-        x = this.x / mag;
-        y = this.y / mag;
+        float x = this.x / mag;
+        float y = this.y / mag;
         return new HVector2D(x, y);
     }
 
-    public float DotProduct(HVector2D v1, HVector2D v2)
+    public static float DotProduct(HVector2D v1, HVector2D v2)
     {
-        x = v1.x * v2.x;
-        y = v1.y * v2.y;
+        float x = v1.x * v2.x;
+        float y = v1.y * v2.y;
         return x + y;
     }
 
-    public HVector2D ProjectionMethod(HVector2D v1, HVector2D v2)
+    public static HVector2D ProjectionMethod(HVector2D v1, HVector2D v2)
     {
         float dotPro = DotProduct(v1, v2);
         double magSquared = Math.Pow(v2.Magnitude(), 2);
@@ -87,10 +87,12 @@ public class HVector2D
         return new HVector2D((float)x, (float)y);
     }
 
-    // public float FindAngle(/*???*/)
-    // {
-
-    // }
+    public static float FindAngle(HVector2D v1, HVector2D v2)
+    {
+        float dotPro = DotProduct(v1, v2);
+        float magMultiplied = v1.Magnitude() * v2.Magnitude();
+        return (Mathf.Acos(dotPro / magMultiplied));
+    }
 
     public Vector2 ToUnityVector2()
     {
