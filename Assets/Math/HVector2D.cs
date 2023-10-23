@@ -91,7 +91,14 @@ public class HVector2D
     {
         float dotPro = DotProduct(v1, v2);
         float magMultiplied = v1.Magnitude() * v2.Magnitude();
-        return (Mathf.Acos(dotPro / magMultiplied));
+        if (v2.x > 0)
+        {
+            return -(Mathf.Acos(dotPro / magMultiplied));
+        }
+        else
+        {
+            return (Mathf.Acos(dotPro / magMultiplied));
+        }
     }
 
     public Vector2 ToUnityVector2()
