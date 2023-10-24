@@ -28,8 +28,28 @@ public class SoccerPlayer : MonoBehaviour
         //Debug.Log(OtherPlayers.Length);
 
         OtherPlayers = FindObjectsOfType<SoccerPlayer>().Where(t => t != this).ToArray();
+
+        if (IsCaptain)
+        {
+            FindMinimum();
+        }
     }
 
+    void FindMinimum()
+    {
+        float lowestHeight = 21f;
+        for(int i=0; i<10; i++)
+        {
+            float height = Random.Range(5f, 20f);
+            Debug.Log(height);
+
+            if(height < lowestHeight)
+            {
+                lowestHeight = height;
+            }
+        }
+        Debug.Log("Lowest Height: " + lowestHeight);
+    }
     //float Magnitude(Vector3 vector)
     //{
 
