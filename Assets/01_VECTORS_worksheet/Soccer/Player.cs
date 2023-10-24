@@ -72,7 +72,7 @@ public class Player : MonoBehaviour
     {
         if (IsCaptain)
         {
-            DebugExtension.DebugArrow(transform.position, OtherPlayer.transform.position, Color.black);
+            DebugExtension.DebugArrow(transform.position, OtherPlayer.transform.position-transform.position, Color.black);
             DebugExtension.DebugArrow(transform.position, transform.forward, Color.blue);
             float angle = Vector3.SignedAngle(transform.forward, OtherPlayer.transform.position, Vector3.forward);
             Debug.Log(angle);
