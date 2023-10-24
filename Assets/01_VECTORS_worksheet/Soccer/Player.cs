@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+// using System.Diagnostics;
+// using System.Numerics;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -70,8 +72,10 @@ public class Player : MonoBehaviour
     {
         if (IsCaptain)
         {
-            //float angle = // Your code here
-            //Debug.Log(angle);
+            DebugExtension.DebugArrow(transform.position, OtherPlayer.transform.position, Color.black);
+            DebugExtension.DebugArrow(transform.position, transform.forward, Color.blue);
+            float angle = Vector3.SignedAngle(transform.forward, OtherPlayer.transform.position, Vector3.forward);
+            Debug.Log(angle);
         }
     }
 }
