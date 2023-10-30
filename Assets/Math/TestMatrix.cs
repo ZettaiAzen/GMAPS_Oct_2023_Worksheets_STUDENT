@@ -12,6 +12,7 @@ public class TestMatrix : MonoBehaviour
     {
         mat.SetIdentity();
         mat.Print();
+
     }
 
     // Update is called once per frame

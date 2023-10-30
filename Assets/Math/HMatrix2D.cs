@@ -42,20 +42,47 @@ public class HMatrix2D
         entries[2, 2] = m22;
     }
 
-    //public static HMatrix2D operator +(HMatrix2D left, HMatrix2D right)
-    //{
-    //    return // your code here
-    //}
+    public static HMatrix2D operator +(HMatrix2D left, HMatrix2D right)
+    {
+        HMatrix2D result = new HMatrix2D();
 
-    //public static HMatrix2D operator -(HMatrix2D left, HMatrix2D right)
-    //{
-    //    return // your code here
-    //}
+        for (int x = 0; x < 3; x++)
+        {
+            for (int y = 0; y < 3; y++)
+            {
+                result.entries[x, y] = left.entries[x, y] + right.entries[x, y];
+            }
+        }
+        return result;
+    }
 
-    //public static HMatrix2D operator *(HMatrix2D left, float scalar)
-    //{
-    //    return // your code here
-    //}
+    public static HMatrix2D operator -(HMatrix2D left, HMatrix2D right)
+    {
+        HMatrix2D result = new HMatrix2D();
+
+        for (int x = 0; x < 3; x++)
+        {
+            for (int y = 0; y < 3; y++)
+            {
+                result.entries[x, y] = left.entries[x, y] - right.entries[x, y];
+            }
+        }
+        return result;
+    }
+
+    public static HMatrix2D operator *(HMatrix2D left, float scalar)
+    {
+        HMatrix2D result = new HMatrix2D();
+
+        for (int x = 0; x < 3; x++)
+        {
+            for (int y = 0; y < 3; y++)
+            {
+                result.entries[x, y] = left.entries[x, y] * scalar;
+            }
+        }
+        return result;
+    }
 
     //// Note that the second argument is a HVector2D object
     ////
@@ -88,15 +115,35 @@ public class HMatrix2D
     //);
     //}
 
-    //public static bool operator ==(HMatrix2D left, HMatrix2D right)
-    //{
-    //    // your code here
-    //}
+    public static bool operator ==(HMatrix2D left, HMatrix2D right)
+    {
+        for (int x = 0; x < 3; x++)
+        {
+            for (int y = 0; y < 3; y++)
+            {
+                if (left.entries[x, y] != right.entries[x, y])
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 
-    //public static bool operator !=(HMatrix2D left, HMatrix2D right)
-    //{
-    //    // your code here
-    //}
+    public static bool operator !=(HMatrix2D left, HMatrix2D right)
+    {
+        for (int x = 0; x < 3; x++)
+        {
+            for (int y = 0; y < 3; y++)
+            {
+                if (left.entries[x, y] == right.entries[x, y])
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 
     //public override bool Equals(object obj)
     //{
