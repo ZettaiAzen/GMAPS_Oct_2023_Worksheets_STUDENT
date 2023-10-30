@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using UnityEngine;
 
 public class HMatrix2D
@@ -84,12 +85,14 @@ public class HMatrix2D
         return result;
     }
 
-    //// Note that the second argument is a HVector2D object
-    ////
-    //public static HVector2D operator *(HMatrix2D left, HVector2D right)
-    //{
-    //    return // your code here
-    //}
+    // Note that the second argument is a HVector2D object
+    public static HVector2D operator *(HMatrix2D left, HVector2D right)
+    {
+        return new HVector2D(
+            left.entries[0, 0] * right.x + left.entries[0, 1] * right.y + left.entries[0, 2] * right.h,
+            left.entries[1, 0] * right.x + left.entries[1, 1] * right.y + left.entries[1, 2] * right.h
+        );
+    }
 
     //// Note that the second argument is a HMatrix2D object
     ////
