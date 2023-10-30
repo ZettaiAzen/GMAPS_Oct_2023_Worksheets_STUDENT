@@ -13,7 +13,6 @@ public class HMatrix2D
 
     public HMatrix2D(float[,] multiArray)
     {
-        //entries = multiArray;
         for (int x = 0; x < 3; x++)
         {
             for(int y = 0; y < 3; y++)
