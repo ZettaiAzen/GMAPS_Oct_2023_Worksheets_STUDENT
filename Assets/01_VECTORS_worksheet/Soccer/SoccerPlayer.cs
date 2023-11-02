@@ -60,7 +60,7 @@ public class SoccerPlayer : MonoBehaviour
 
         foreach (SoccerPlayer other in OtherPlayers)
         {
-            Vector3 toPlayer = (other.transform.position - this.transform.position);
+            Vector3 toPlayer = (other.transform.position - this.transform.forward);
             toPlayer.Normalize();
 
             float dot = Vector3.Dot(toPlayer, this.transform.position);
@@ -99,13 +99,13 @@ public class SoccerPlayer : MonoBehaviour
     //    return closest;
     //}
 
-    //void DrawVectors()
-    //{
-    //    foreach (SoccerPlayer other in OtherPlayers)
-    //    {
-    //            Debug.DrawRay(transform.position, other.transform.position-transform.position, Color.black);
-    //    }
-    //}
+    void DrawVectors()
+    {
+        foreach (SoccerPlayer other in OtherPlayers)
+        {
+            Debug.DrawRay(transform.position, other.transform.position - transform.position, Color.black);
+        }
+    }
 
     void Update()
     {
@@ -118,10 +118,15 @@ public class SoccerPlayer : MonoBehaviour
             Debug.DrawRay(transform.position, transform.forward * 10f, Color.red);
         }
 
-        //DrawVectors();
+        // DrawVectors();
 
         SoccerPlayer targetPlayer = FindClosestPlayerDot();
-        targetPlayer.GetComponent<Renderer>().material.color = Color.yellow;
+        targetPlayer.GetComponent<Renderer>().material.color = Color.green;
+
+        foreach (SoccerPlayer other in OtherPlayers.Where(t => t!= targetPlayer))
+        {
+            other.GetComponent<Renderer>().material.color = Color.white;
+        }
 
     }
 }
