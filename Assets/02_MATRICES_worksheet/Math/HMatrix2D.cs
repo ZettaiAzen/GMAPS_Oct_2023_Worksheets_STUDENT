@@ -118,6 +118,60 @@ public class HMatrix2D
     //);
     //}
 
+    public static HMatrix2D operator *(HMatrix2D left, HMatrix2D right)
+    {
+        // creating a new HMatrix2D object to store the result
+        HMatrix2D result = new HMatrix2D();
+
+        // stores the size of the left matrix
+        int leftRow = 3;
+        int leftColumn = 3;
+
+        // stores the size of the right matrix
+        int rightRow = 3;
+        int rightColumn = 3;
+
+        // basically cycles through the matrices to multiply them
+
+        // you can think of the for loops like gears, the less nested the loop is,
+        // the less it is run.
+
+        // since the result matrix is only storing the value after all the multiplication
+        // and addition of the different elements of the two matrices being multiplied
+        // has happened, the index that we are looking at for the results matrix is
+        // not changed as much/as often. 
+
+        // everytime we move to a new cell of the result matrix, we move to a new column
+        // to the right (+1) until the last column.
+        // then we will move down a row (+1)
+
+        // so from there we can see that the column has to change more times before the
+        // row gets changed. So the for loop with j is inside of the i for loop, meaning that
+        // j gets changed more, so we will put it in the column segment of the result matrix
+        // i is then put to the row segment of the result matrix. result.entries[i, j]
+
+        // same concept goes with the left matrix.
+        // after every multiplication, we move to the next column of that row until the
+        // last column.
+        // then after all the columns have been looked through, that total addition result gets
+        // added to the result matrix and the row of the left matrix increases/moves down
+        // so since the row of left matrix and the addition of 
+
+        for (int i = 0; i < leftRow; i++)
+        {
+            for (int j = 0; j< rightColumn; j++)
+            {
+                for (int k = 0; k < rightRow; k++)
+                {
+                    result.entries[i, j] += left.entries[i, k] * right.entries[k, j];
+                }
+            }
+        }
+
+        return result;
+
+    }
+
     public static bool operator ==(HMatrix2D left, HMatrix2D right)
     {
         for (int x = 0; x < 3; x++)
