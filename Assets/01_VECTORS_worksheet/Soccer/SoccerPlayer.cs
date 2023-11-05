@@ -58,46 +58,40 @@ public class SoccerPlayer : MonoBehaviour
         SoccerPlayer closest = null;
         float minAngle = 180f;
 
-        foreach (SoccerPlayer other in OtherPlayers)
+        for (int i =0; i< OtherPlayers.Length; i++)
         {
-            Vector3 toPlayer = (other.transform.position - this.transform.forward);
-            toPlayer.Normalize();
+            Vector3 toPlayer = OtherPlayers[i].transform.position - this.transform.position;
+            toPlayer = Normalise(toPlayer);
 
-            float dot = Vector3.Dot(toPlayer, this.transform.position);
+            float dot = Dot(this.transform.forward, toPlayer);
             float angle = Mathf.Acos(dot);
-            angle *= Mathf.Rad2Deg;
+            angle = angle *  Mathf.Rad2Deg;
 
             if (angle < minAngle)
             {
                 minAngle = angle;
-                closest = other;
+                closest = OtherPlayers[i];
             }
         }
         return closest;
-        
+
     }
 
-    //float Magnitude(Vector3 vector)
-    //{
+    float Magnitude(Vector3 vector)
+    {
+        return vector.magnitude;
+    }
 
-    //}
+    Vector3 Normalise(Vector3 vector)
+    {
+        return vector.normalized;
+    }
 
-    //Vector3 Normalise(Vector3 vector)
-    //{
+    float Dot(Vector3 vectorA, Vector3 vectorB)
+    {
+        return Vector3.Dot(vectorA, vectorB);
+    }
 
-    //}
-
-    //float Dot(Vector3 vectorA, Vector3 vectorB)
-    //{
-
-    //}
-
-    //SoccerPlayer FindClosestPlayerDot()
-    //{
-    //    SoccerPlayer closest = null;
-
-    //    return closest;
-    //}
 
     void DrawVectors()
     {
@@ -116,18 +110,18 @@ public class SoccerPlayer : MonoBehaviour
             angle += Input.GetAxis("Horizontal") * rotationSpeed;
             transform.localRotation = Quaternion.AngleAxis(angle, Vector3.up);
             Debug.DrawRay(transform.position, transform.forward * 10f, Color.red);
+
+
+            // DrawVectors();
+
+            SoccerPlayer targetPlayer = FindClosestPlayerDot();
+            targetPlayer.GetComponent<Renderer>().material.color = Color.green;
+
+            foreach (SoccerPlayer other in OtherPlayers.Where(t => t != targetPlayer))
+            {
+                other.GetComponent<Renderer>().material.color = Color.white;
+            }
         }
-
-        // DrawVectors();
-
-        SoccerPlayer targetPlayer = FindClosestPlayerDot();
-        targetPlayer.GetComponent<Renderer>().material.color = Color.green;
-
-        foreach (SoccerPlayer other in OtherPlayers.Where(t => t!= targetPlayer))
-        {
-            other.GetComponent<Renderer>().material.color = Color.white;
-        }
-
     }
 }
 
