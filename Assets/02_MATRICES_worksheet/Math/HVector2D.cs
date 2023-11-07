@@ -111,8 +111,13 @@ public class HVector2D
         return new Vector3(this.x, this.y, 0);
     }
 
-    // public void Print()
-    // {
+    public void Print()
+    {
+        string result = "";
+        result += x + " ";
+        result += y + " ";
 
-    // }
+        Debug.Log(result);
+    }
+
 }
