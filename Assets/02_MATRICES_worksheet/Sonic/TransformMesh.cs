@@ -34,11 +34,10 @@ public class TransformMesh : MonoBehaviour
 
     void Rotate(float angle)
     {
-
         transformMatrix.SetIdentity();
 
-        toOriginMatrix.setTranslationMat(0, 0);
-        fromOriginMatrix.setTranslationMat(0, 0);
+        toOriginMatrix.setTranslationMat(0-pos.x, 0-pos.y);
+        fromOriginMatrix.setTranslationMat(pos.x, pos.y);
 
         rotateMatrix.setRotationMat(angle);
 
