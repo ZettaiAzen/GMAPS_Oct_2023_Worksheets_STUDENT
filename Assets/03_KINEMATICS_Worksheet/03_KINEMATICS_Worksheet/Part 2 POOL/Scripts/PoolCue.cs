@@ -30,9 +30,9 @@ public class PoolCue : MonoBehaviour
         {
             drawnLine.EnableDrawing(false);
 
-            ////update the velocity of the white ball.
-            //HVector2D v = new HVector2D(/*your code here*/);
-            //ball./*your code here*/ = v;
+            //update the velocity of the white ball.
+            HVector2D v = new HVector2D(ball.transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            ball.Velocity = v;
 
             drawnLine = null; // End line drawing            
         }
