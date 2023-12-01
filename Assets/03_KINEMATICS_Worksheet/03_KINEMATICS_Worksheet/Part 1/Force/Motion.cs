@@ -9,7 +9,9 @@ public class Motion : MonoBehaviour
     void FixedUpdate()
     {
         float dt = Time.deltaTime;
-
+        // velocity is calculated by displacement/time
+        // to calculate displacement, velocity*time
+        // dx = displacement in the x-axis, 3 = velocity, dt = time
         float dx = 3 * dt;
         float dy = 0;
         float dz = 0;

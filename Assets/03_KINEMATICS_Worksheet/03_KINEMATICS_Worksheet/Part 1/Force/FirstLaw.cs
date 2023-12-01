@@ -9,7 +9,9 @@ public class FirstLaw : MonoBehaviour
 
     void Start()
     {
+        // get the rigidbody component in order to apply a force
         rb = GetComponent<Rigidbody>();
+        // add a force using impulse which is an instant one time force
         rb.AddForce(force, ForceMode.Impulse);
      }
 

@@ -23,8 +23,10 @@ public class TransformMesh : MonoBehaviour
         Rotate(-45);
     }
 
+    // translation function
     void Translate(float x, float y)
     {
+        //getting identity matrix so that the the translation matrix can be converted to a 3x3 matrix to be combined later for transformation matrix
         transformMatrix.SetIdentity();
         transformMatrix.setTranslationMat(x, y);
         Transform();
@@ -32,20 +34,27 @@ public class TransformMesh : MonoBehaviour
         pos = transformMatrix * pos;
     }
 
+    // rotation function
     void Rotate(float angle)
     {
+        //getting identity matrix so that the the rotation matrix can be converted to a 3x3 matrix to be combined later for transformation matrix
         transformMatrix.SetIdentity();
 
+        // setting the translation matrix in order to bring the object back to origin for rotation
         toOriginMatrix.setTranslationMat(0-pos.x, 0-pos.y);
+        // setting the translation matrix in order to bring the object back to its original position
         fromOriginMatrix.setTranslationMat(pos.x, pos.y);
 
+        // setting the rotation matrix of the object
         rotateMatrix.setRotationMat(angle);
 
+        // multiplying the matrices together starting from right to left
         transformMatrix = fromOriginMatrix * rotateMatrix * toOriginMatrix;
 
         Transform();
     }
 
+    // multiplies the transformation matrix with our object's HVector2d's verticles and then puts them back into Unity's own vertice system
     private void Transform()
     {
         vertices = meshManager.clonedMesh.vertices;
